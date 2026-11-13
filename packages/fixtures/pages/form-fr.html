@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formulaire administratif (fixture)</title>
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<nav><a href="/">fixtures</a></nav>
+<h1>Demande d'inscription</h1>
+<form id="f">
+  <fieldset>
+    <legend>État civil</legend>
+    <label for="civ">Civilité</label>
+    <select id="civ" name="civilite">
+      <option value="">—</option>
+      <option>Madame</option>
+      <option>Monsieur</option>
+      <option>Autre</option>
+    </select>
+    <label for="nom">Nom de famille *</label>
+    <input id="nom" name="nom" type="text" required>
+    <label for="prenom">Prénom(s) *</label>
+    <input id="prenom" name="prenom" type="text" required>
+    <label for="nais">Date de naissance (jj/mm/aaaa) *</label>
+    <input id="nais" name="naissance" type="text" placeholder="jj/mm/aaaa" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" required>
+    <label for="lieu">Lieu de naissance</label>
+    <input id="lieu" name="lieu_naissance" type="text">
+    <label for="nat">Nationalité</label>
+    <input id="nat" name="nationalite" type="text">
+    <label for="nom-ar">Nom en écriture d'origine (arabe, cyrillique, etc.)</label>
+    <input id="nom-ar" name="nom_origine" type="text" dir="auto">
+  </fieldset>
+  <fieldset>
+    <legend>Coordonnées</legend>
+    <label for="adr">Adresse (numéro et voie)</label>
+    <input id="adr" name="adresse" type="text">
+    <label for="cp">Code postal</label>
+    <input id="cp" name="code_postal" type="text" inputmode="numeric" maxlength="5">
+    <label for="ville">Ville</label>
+    <input id="ville" name="ville" type="text">
+    <label for="tel">Téléphone mobile</label>
+    <input id="tel" name="telephone" type="tel" placeholder="+33 6 12 34 56 78">
+    <label for="mel">Adresse électronique *</label>
+    <input id="mel" name="courriel" type="email" required>
+  </fieldset>
+  <fieldset class="inline">
+    <legend>Situation familiale</legend>
+    <label><input type="radio" name="situation" value="celibataire"> Célibataire</label>
+    <label><input type="radio" name="situation" value="marie"> Marié(e)</label>
+    <label><input type="radio" name="situation" value="pacse"> Pacsé(e)</label>
+  </fieldset>
+  <label><input type="checkbox" name="rgpd" required> J'accepte le traitement de mes données (consentement : jamais coché automatiquement)</label>
+  <button type="submit">Envoyer la demande</button>
+</form>
+<div id="result" role="status"></div>
+<script src="/assets/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Closed shadow root (fixture, S4)</title>
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<nav><a href="/">fixtures</a></nav>
+<h1>Closed shadow root</h1>
+<p class="hint">The field below lives in a <code>mode: 'closed'</code> shadow root. <code>element.shadowRoot</code> is <code>null</code> for everyone except
+the component's own code (and extensions using <code>chrome.dom.openOrClosedShadowRoot</code>).</p>
+
+<ef-closed-field label="Company name" name="company" id="host1"></ef-closed-field>
+<ef-closed-field label="Tax identifier" name="tax" id="host2"></ef-closed-field>
+
+<p>Page-side readout (owned by the component): <strong id="readout">(nothing typed yet)</strong></p>
+<p>Outer <code>host1.shadowRoot</code> is: <strong id="outer-sr"></strong></p>
+<script>
+  // The component keeps its own reference; nobody else can get it through the DOM API.
+  class EfClosedField extends HTMLElement {
+    constructor() {
+      super();
+      var root = this.attachShadow({ mode: "closed" });
+      var label = document.createElement("label");
+      label.textContent = this.getAttribute("label") || "Field";
+      var input = document.createElement("input");
+      input.type = "text";
+      input.name = this.getAttribute("name") || "field";
+      input.setAttribute("aria-label", label.textContent);
+      label.appendChild(input);
+      root.appendChild(label);
+      input.addEventListener("input", function () {
+        document.getElementById("readout").textContent = input.name + " = " + input.value;
+      });
+    }
+  }
+  customElements.define("ef-closed-field", EfClosedField);
+  document.getElementById("outer-sr").textContent = String(document.getElementById("host1").shadowRoot);
+</script>
+</body>
+</html>

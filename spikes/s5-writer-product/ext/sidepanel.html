@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EF S5 writer spike</title>
+<style>
+  :root { color-scheme: light dark; font-family: system-ui, sans-serif; font-size: 13px; }
+  body { margin: 0; padding: .6rem; }
+  h1 { font-size: 1rem; margin: 0 0 .4rem; }
+  button { margin: .2rem .3rem .2rem 0; padding: .3rem .6rem; cursor: pointer; }
+  input[type=text] { width: 14rem; }
+  table { border-collapse: collapse; width: 100%; font-size: 12px; }
+  td, th { border: 1px solid #8886; padding: .15rem .3rem; text-align: left; vertical-align: top; }
+  .bad { color: #c00; font-weight: 600; } .ok { color: #070; } .warn { color: #a60; }
+  pre { white-space: pre-wrap; max-height: 12rem; overflow: auto; background: #8882; padding: .4rem; }
+</style>
+</head>
+<body>
+<h1>EF S5 — writer with exact read-back</h1>
+<p>Base URL <input id="base" type="text" value="http://localhost:5800"> (needs <code>node spikes/server/serve.mjs</code> and <code>pnpm build</code> in <code>spikes/frameworks</code>)</p>
+<div><button id="run-tab">Run the suite for the ACTIVE tab's page</button> <button id="run-all">Run ALL pages (navigates the active tab)</button> <button id="copy">Copy results</button></div>
+<h2>Rates by category</h2><div id="rates"></div>
+<h2>Cases</h2><table id="cases"><thead><tr><th>case</th><th>category</th><th>writer</th><th>page truth</th><th>outcome</th></tr></thead><tbody></tbody></table>
+<h2>Summary</h2><pre id="summary"></pre>
+<script type="module" src="sidepanel.js"></script>
+</body>
+</html>

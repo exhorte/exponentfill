@@ -1,0 +1,23 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      '@llamaindex/liteparse-wasm':
+        specifier: 2.18.0
+        version: 2.18.0
+
+packages:
+
+  '@llamaindex/liteparse-wasm@2.18.0':
+    resolution: {integrity: sha512-Dto3OzufMMau1DDMevVDSHW7qmXlnDUw8dj9WO7Up4dyOYonfzUXGxflYI21EuYSxH4iZ2j4/WdDBltrN7SaxQ==}
+    engines: {node: '>=18.0.0'}
+
+snapshots:
+
+  '@llamaindex/liteparse-wasm@2.18.0': {}

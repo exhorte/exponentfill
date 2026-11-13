@@ -1,0 +1,50 @@
+# Render Blueprint: the API (Docker) and its PostgreSQL, in the EU (Frankfurt). The dashboard is NOT here: it is a static site on
+# Vercel (apps/dashboard/vercel.json), which forwards /v1 to this API so the browser stays on ONE origin (ADR-024).
+# Read docs/DEPLOYMENT.md before creating it: EF_MASTER_KEY is YOURS to generate, keep and back up; Render never generates it.
+#
+# Plan ids below are the ones Render documents today; if Render rejects one, pick another from the dashboard. The `free` plans are
+# NOT suitable for personal data (a free web service sleeps; a free database is temporary).
+
+databases:
+  - name: exponent-fill-db
+    databaseName: exponent_fill
+    user: exponent_fill
+    region: frankfurt
+    plan: 0.1c-256mb
+    postgresMajorVersion: "18"
+    # No connection from outside: only the API reaches the database, over Render's private network.
+    # Add your own address here if you ever need psql or pg_dump from your machine.
+    ipAllowList: []
+
+services:
+  - type: web
+    name: exponent-fill-api
+    runtime: docker
+    region: frankfurt
+    plan: 0.5c-512mb
+    dockerfilePath: ./apps/backend/Dockerfile
+    dockerContext: ./apps/backend
+    healthCheckPath: /health
+    # Deploy only after the repository's checks (CI) pass.
+    autoDeployTrigger: checksPass
+    buildFilter:
+      paths:
+        - apps/backend/**
+    envVars:
+      - key: EF_ENV
+        value: prod
+      - key: EF_DATABASE_URL
+        fromDatabase:
+          name: exponent-fill-db
+          property: connectionString
+      # 32 random bytes, base64. Asked for ONCE when the Blueprint is created. Losing it makes every stored fact and document
+      # unreadable; changing it later does the same. See docs/DEPLOYMENT.md.
+      - key: EF_MASTER_KEY
+        sync: false
+      # The API container's disk is ephemeral: the encrypted documents live in the database (ADR-024).
+      - key: EF_BLOB_BACKEND
+        value: db
+      - key: EF_COOKIE_SECURE
+        value: "true"
+      - key: EF_ENABLE_DOCS
+        value: "false"

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Upload patterns (fixture, S3)</title>
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<nav><a href="/">fixtures</a></nav>
+<h1>Upload patterns</h1>
+<p class="hint">Test PAGE only: it reports what it received (name, size, type, SHA-256). Nothing is uploaded anywhere.
+How a file gets into the page is the subject of spike S3, to be written in a session that has not read the OpenBUA analysis.</p>
+
+<h2>A — plain visible input (accept=".pdf")</h2>
+<label for="up-a">Résumé (PDF)</label>
+<input id="up-a" name="resume" type="file" accept=".pdf,application/pdf">
+<div class="file-out" id="out-a"></div>
+
+<h2>B — hidden input behind a styled label (images, multiple)</h2>
+<label for="up-b" role="button" tabindex="0" style="display:inline-block;border:1px solid #8888;padding:.4rem .8rem;cursor:pointer">Choose photos…</label>
+<input id="up-b" name="photos" type="file" accept="image/*" multiple style="position:absolute;left:-9999px">
+<div class="file-out" id="out-b"></div>
+
+<h2>C — drop zone (drop handler + hidden fallback input)</h2>
+<div class="drop" id="drop">Drop a document here
+  <input id="up-c" name="document" type="file" style="display:none">
+</div>
+<div class="file-out" id="out-c"></div>
+
+<script>
+  async function describe(files, outId) {
+    var out = document.getElementById(outId);
+    var lines = [];
+    for (var i = 0; i < files.length; i++) {
+      var f = files[i];
+      var buf = await f.arrayBuffer();
+      var hash = await crypto.subtle.digest("SHA-256", buf);
+      var hex = Array.from(new Uint8Array(hash)).map(function (b) { return b.toString(16).padStart(2, "0"); }).join("");
+      lines.push(f.name + " | " + f.size + " bytes | " + (f.type || "no type") + " | sha256=" + hex);
+    }
+    out.textContent = lines.length ? lines.join("\n") : "(no file)";
+    out.style.whiteSpace = "pre-wrap";
+  }
+  ["a", "b", "c"].forEach(function (k) {
+    document.getElementById("up-" + k).addEventListener("change", function (e) { describe(e.target.files, "out-" + k); });
+  });
+  var drop = document.getElementById("drop");
+  ["dragenter", "dragover"].forEach(function (t) { drop.addEventListener(t, function (e) { e.preventDefault(); drop.classList.add("over"); }); });
+  ["dragleave", "drop"].forEach(function (t) { drop.addEventListener(t, function (e) { e.preventDefault(); drop.classList.remove("over"); }); });
+  drop.addEventListener("drop", function (e) { describe(e.dataTransfer.files, "out-c"); });
+</script>
+</body>
+</html>

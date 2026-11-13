@@ -1,0 +1,18 @@
+{
+  "name": "@exponent-fill/fixtures",
+  "version": "0.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "description": "Fixture bank v0: static form pages with fictitious data, used by unit and e2e tests (promoted from spikes/fixtures).",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "typescript": "6.0.3"
+  }
+}

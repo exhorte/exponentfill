@@ -1,0 +1,3 @@
+# Own workspace root: nothing from here may enter the product lockfile.
+packages: []
+# pnpm 11 refuses packages younger than minimumReleaseAge (1 day). Do not bypass it: pin an older version.

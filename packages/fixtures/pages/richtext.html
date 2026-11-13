@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rich text (fixture)</title>
+<link rel="stylesheet" href="/assets/style.css">
+<style>#editor { min-height: 6rem; border: 1px solid #8888; padding: .5rem; }</style>
+</head>
+<body>
+<nav><a href="/">fixtures</a></nav>
+<h1>Rich text</h1>
+<form id="f">
+  <label id="ed-label">Cover letter (contenteditable)</label>
+  <div id="editor" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="ed-label"></div>
+  <p>Characters seen by the page's own input handler: <strong id="count">0</strong></p>
+  <label for="plain">Summary (plain textarea, same page)</label>
+  <textarea id="plain" name="summary" rows="3"></textarea>
+  <button type="submit">Send</button>
+</form>
+<div id="result" role="status"></div>
+<script>
+  var ed = document.getElementById("editor");
+  ed.addEventListener("input", function () { document.getElementById("count").textContent = String(ed.innerText.length); });
+</script>
+<script src="/assets/common.js"></script>
+</body>
+</html>

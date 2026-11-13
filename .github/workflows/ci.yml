@@ -1,0 +1,64 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  web:
+    name: TypeScript (extension, dashboard, packages)
+    runs-on: ubuntu-latest
+    steps:
+      # Third-party actions are pinned by commit SHA (tags can be moved). Update deliberately, with the tag in the comment.
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm check:i18n
+      - run: pnpm check:invariants
+      - run: pnpm check:licenses
+      - run: pnpm audit --prod
+      - run: pnpm build
+      - run: pnpm --filter @exponent-fill/extension exec playwright install --with-deps chromium
+      - run: xvfb-run --auto-servernum pnpm test:e2e
+
+  backend:
+    name: Python (backend)
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18-alpine
+        env:
+          POSTGRES_PASSWORD: ef_ci_only
+          POSTGRES_DB: ef
+        ports: ["5442:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres" --health-interval 5s --health-timeout 5s --health-retries 10
+    defaults:
+      run:
+        working-directory: apps/backend
+    env:
+      EF_DATABASE_URL: postgresql+psycopg://postgres:ef_ci_only@127.0.0.1:5442/ef
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: astral-sh/setup-uv@e92bafb6253dcd438e0484186d7669ea7a8ca1cc # v6.4.3
+      - run: uv sync --frozen
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run alembic upgrade head
+      - run: uv run pytest -q
+      - run: uv run python scripts/check_licenses.py
+      - run: uvx pip-audit --strict --progress-spinner off

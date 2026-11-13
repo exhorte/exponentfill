@@ -1,0 +1,45 @@
+# Local development stack (ADR-009): FastAPI + PostgreSQL. No Redis/Celery until Phase 8.
+# Ports are bound to 127.0.0.1 only. The default password is for local development only.
+name: exponent-fill
+
+services:
+  db:
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_USER: ef
+      POSTGRES_PASSWORD: ${EF_DB_PASSWORD:-ef_dev_only}
+      POSTGRES_DB: ef
+    ports:
+      - "127.0.0.1:5442:5432"
+    volumes:
+      # PostgreSQL 18 images keep data under /var/lib/postgresql/<major>/docker.
+      - ef_pgdata:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ef -d ef"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build:
+      context: ../../apps/backend
+    environment:
+      EF_DATABASE_URL: postgresql://ef:${EF_DB_PASSWORD:-ef_dev_only}@db:5432/ef
+      EF_ENV: ${EF_ENV:-dev}
+      # Production: set EF_MASTER_KEY (32 random bytes, base64) from a secrets manager. In dev a key is generated ONCE into the
+      # `ef_api_var` volume next to the data it protects (losing that volume makes stored documents unreadable).
+      EF_MASTER_KEY: ${EF_MASTER_KEY:-}
+      EF_DEV_MASTER_KEY_PATH: /srv/var/dev-master.key
+      EF_STORAGE_DIR: /srv/var/storage
+      EF_DASHBOARD_ORIGINS: ${EF_DASHBOARD_ORIGINS:-}
+    ports:
+      - "127.0.0.1:8010:8010"
+    volumes:
+      - ef_api_var:/srv/var
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  ef_pgdata:
+  ef_api_var:

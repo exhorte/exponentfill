@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Upload patterns (S3)</title>
+<style>body{font:14px system-ui,sans-serif;max-width:44rem;margin:1rem auto;padding:0 1rem}section{border:1px solid #8886;padding:.6rem;margin:.8rem 0}.drop{border:2px dashed #8888;padding:1rem;text-align:center}.out{font:12px ui-monospace,monospace;word-break:break-all;white-space:pre-wrap}</style></head>
+<body>
+<h1>Upload patterns</h1>
+<section id="sa"><h2>A — visible input</h2>
+  <label for="up-a">Résumé (PDF)</label> <input id="up-a" name="resume" type="file" accept=".pdf,application/pdf">
+  <div class="out" id="out-a"></div></section>
+<section id="sb"><h2>B — hidden input behind a label</h2>
+  <label for="up-b" role="button" tabindex="0" style="border:1px solid #8888;padding:.3rem .6rem;cursor:pointer">Choose a document…</label>
+  <input id="up-b" name="doc" type="file" accept=".pdf,.doc,.docx" style="position:absolute;left:-9999px">
+  <div class="out" id="out-b"></div></section>
+<section id="sc"><h2>C — drop zone</h2>
+  <div class="drop" id="drop">Drop here <input id="up-c" name="drop" type="file" style="display:none"></div>
+  <div class="out" id="out-c"></div></section>
+<script>
+async function describe(files, id) {
+  const lines = [];
+  for (const f of files) {
+    let sha = "(no crypto.subtle)";
+    if (crypto.subtle) { const d = await crypto.subtle.digest("SHA-256", await f.arrayBuffer()); sha = Array.from(new Uint8Array(d)).map(b => b.toString(16).padStart(2, "0")).join(""); }
+    lines.push(f.name + " | " + f.size + " bytes | " + f.type + " | sha256=" + sha);
+  }
+  document.getElementById(id).textContent = lines.join("\n");
+}
+for (const k of ["a", "b", "c"]) document.getElementById("up-" + k).addEventListener("change", e => describe(e.target.files, "out-" + k));
+const drop = document.getElementById("drop");
+for (const t of ["dragenter", "dragover"]) drop.addEventListener(t, e => e.preventDefault());
+drop.addEventListener("drop", e => { e.preventDefault(); describe(e.dataTransfer.files, "out-c"); });
+</script></body></html>

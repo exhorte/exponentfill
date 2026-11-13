@@ -1,0 +1,165 @@
+{
+  "cv_fr_simple.pdf": {
+    "kind": "text",
+    "expected": [
+      "Camille DURAND",
+      "camille.durand@example.com",
+      "+33 1 99 00 12 34",
+      "12 rue des Lilas",
+      "69003 Lyon",
+      "Société Exemple SAS",
+      "mars 2021",
+      "Atelier Démo SARL",
+      "septembre 2018",
+      "Master Informatique",
+      "mention Bien",
+      "Université Fictive de Démonstration",
+      "PostgreSQL",
+      "niveau C1"
+    ],
+    "order": [
+      "Expérience professionnelle",
+      "Société Exemple SAS",
+      "Atelier Démo SARL",
+      "Formation",
+      "Master Informatique",
+      "Compétences",
+      "Langues"
+    ]
+  },
+  "cv_fr_two_columns.pdf": {
+    "kind": "text",
+    "expected": [
+      "Moussa NDIAYE",
+      "moussa.ndiaye@example.com",
+      "+221 70 000 11 22",
+      "Banque Exemple",
+      "janvier 2020",
+      "Startup Démo",
+      "École Fictive d'Ingénieurs de Dakar",
+      "génie logiciel",
+      "Kubernetes"
+    ],
+    "order": [
+      "Moussa NDIAYE",
+      "Parcours",
+      "Banque Exemple",
+      "Startup Démo",
+      "Études"
+    ]
+  },
+  "cv_fr_interleaved.pdf": {
+    "kind": "layout-hard",
+    "expected": [
+      "Léa MARTIN",
+      "lea.martin@example.com",
+      "+33 1 99 00 98 76",
+      "Cabinet Fictif",
+      "mai 2022",
+      "Automatisation des rapports mensuels ; réduction de 60 % du temps de production des tableaux de bord.",
+      "Master Statistique",
+      "Université Fictive de Démonstration"
+    ],
+    "order": []
+  },
+  "cv_en_simple.pdf": {
+    "kind": "text",
+    "expected": [
+      "Jordan LEE",
+      "jordan.lee@example.com",
+      "+1 514 555 0147",
+      "55 Fictional Ave",
+      "Example Analytics Inc.",
+      "April 2020",
+      "Master of Science in Statistics",
+      "Fictional University of Demonstration",
+      "data visualisation"
+    ],
+    "order": [
+      "Experience",
+      "Example Analytics Inc.",
+      "Education",
+      "Master of Science in Statistics",
+      "Skills"
+    ]
+  },
+  "diplome_fr.pdf": {
+    "kind": "certificate",
+    "expected": [
+      "UNIVERSITÉ FICTIVE DE DÉMONSTRATION",
+      "Awa DIOP",
+      "12 mars 1998",
+      "Dakar",
+      "Master",
+      "Génie logiciel",
+      "mention Bien",
+      "juin 2023",
+      "15 septembre 2023",
+      "FIC-2023-004417"
+    ],
+    "order": []
+  },
+  "releve_notes_fr.pdf": {
+    "kind": "table",
+    "expected": [
+      "Awa DIOP",
+      "20231234",
+      "2022-2023",
+      "Algorithmique avancée",
+      "15,5",
+      "Réseaux et sécurité",
+      "12,25",
+      "Génie logiciel",
+      "15,02",
+      "Mention : Bien"
+    ],
+    "order": []
+  },
+  "facture_domicile_fr.pdf": {
+    "kind": "bill",
+    "expected": [
+      "Camille DURAND",
+      "12 rue des Lilas",
+      "69003 Lyon",
+      "FE-2026-778812",
+      "3 octobre 2026",
+      "412 kWh",
+      "128,10 €",
+      "25 octobre 2026"
+    ],
+    "order": []
+  },
+  "cv_fr_long.pdf": {
+    "kind": "long",
+    "expected": [
+      "Inès BERNARD",
+      "ines.bernard@example.com",
+      "+33 1 99 00 56 78",
+      "Mission 1",
+      "Mission 15",
+      "Mission 30",
+      "Client Fictif 30 SA"
+    ],
+    "order": []
+  },
+  "cv_fr_scanned.pdf": {
+    "kind": "scanned",
+    "expected": [
+      "Camille DURAND",
+      "camille.durand@example.com",
+      "+33 1 99 00 12 34",
+      "12 rue des Lilas",
+      "69003 Lyon",
+      "Société Exemple SAS",
+      "mars 2021",
+      "Atelier Démo SARL",
+      "septembre 2018",
+      "Master Informatique",
+      "mention Bien",
+      "Université Fictive de Démonstration",
+      "PostgreSQL",
+      "niveau C1"
+    ],
+    "order": []
+  }
+}

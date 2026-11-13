@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multi-step form (fixture)</title>
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<nav><a href="/">fixtures</a></nav>
+<h1>Registration — <span id="step-title"></span></h1>
+<p class="hint">Each step REPLACES the form contents (nodes are removed, not hidden). Step values are kept in memory only.</p>
+<form id="f"><div id="step"></div>
+  <button type="button" id="prev">Previous</button>
+  <button type="button" id="next">Next</button>
+  <button type="submit" id="send" hidden>Finish registration</button>
+</form>
+<div id="result" role="status"></div>
+<script>
+  var steps = [
+    { title: "1/3 Contact", html: '<label for="s1-email">Email</label><input id="s1-email" name="email" type="email">' +
+      '<label for="s1-phone">Phone</label><input id="s1-phone" name="phone" type="tel">' },
+    { title: "2/3 Address", html: '<label for="s2-street">Street</label><input id="s2-street" name="street">' +
+      '<label for="s2-country">Country</label><select id="s2-country" name="country"><option value="">Choose…</option><option>France</option><option>Senegal</option></select>' },
+    { title: "3/3 Review", html: '<p>Check your details, then finish.</p><label><input type="checkbox" name="confirm"> I confirm the details above are correct</label>' }
+  ];
+  var i = 0, saved = {};
+  function render() {
+    document.getElementById("step-title").textContent = steps[i].title;
+    var host = document.getElementById("step");
+    host.replaceChildren();
+    host.insertAdjacentHTML("beforeend", steps[i].html);
+    host.querySelectorAll("input,select").forEach(function (el) {
+      if (saved[el.name] !== undefined && el.type !== "checkbox") el.value = saved[el.name];
+    });
+    document.getElementById("prev").disabled = i === 0;
+    document.getElementById("next").hidden = i === steps.length - 1;
+    document.getElementById("send").hidden = i !== steps.length - 1;
+  }
+  function keep() {
+    document.querySelectorAll("#step input,#step select").forEach(function (el) { if (el.type !== "checkbox") saved[el.name] = el.value; });
+  }
+  document.getElementById("next").addEventListener("click", function () { keep(); i++; render(); });
+  document.getElementById("prev").addEventListener("click", function () { keep(); i--; render(); });
+  render();
+</script>
+<script src="/assets/common.js"></script>
+</body>
+</html>

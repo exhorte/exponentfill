@@ -1,0 +1,25 @@
+{
+  "name": "@exponent-fill/form-writer",
+  "version": "0.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "description": "Writes values into form fields and READS THEM BACK: exact read-back, idempotence, explicit failures, refusal of secrets and of any commit control, undo snapshots. Never submits anything.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@exponent-fill/form-engine": "workspace:*"
+  },
+  "devDependencies": {
+    "@exponent-fill/fixtures": "workspace:*",
+    "@types/jsdom": "30.0.0",
+    "jsdom": "30.1.3",
+    "typescript": "6.0.3",
+    "vitest": "5.1.0"
+  }
+}

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Custom widgets (fixture)</title>
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+  .combo { position: relative; }
+  .combo ul { position: absolute; z-index: 5; left: 0; right: 0; margin: 0; padding: 0; list-style: none; background: Canvas; border: 1px solid #8888; max-height: 10rem; overflow: auto; }
+  .combo li { padding: .3rem .5rem; cursor: pointer; }
+  .combo li[aria-selected="true"], .combo li:hover { background: #8883; }
+</style>
+</head>
+<body>
+<nav><a href="/">fixtures</a></nav>
+<h1>Custom widgets</h1>
+<form id="f">
+  <label for="city-input">City (ARIA combobox, async options after 300 ms; typing is NOT a selection)</label>
+  <div class="combo">
+    <input id="city-input" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="city-list" autocomplete="off">
+    <ul id="city-list" role="listbox" hidden></ul>
+  </div>
+  <p>Selected city: <strong id="city-out">(none)</strong></p>
+
+  <label for="airport">Airport (native input + datalist)</label>
+  <input id="airport" name="airport" list="airports">
+  <datalist id="airports"><option value="CDG"><option value="DSS"><option value="YUL"><option value="FRA"></datalist>
+
+  <label id="lang-label">Preferred language (div-based select, role=listbox)</label>
+  <div id="lang" role="listbox" aria-labelledby="lang-label" tabindex="0">
+    <div role="option" data-value="fr" aria-selected="false">Français</div>
+    <div role="option" data-value="en" aria-selected="false">English</div>
+    <div role="option" data-value="wo" aria-selected="false">Wolof</div>
+  </div>
+  <p>Selected language: <strong id="lang-out">(none)</strong></p>
+
+  <label for="d1">Appointment (native datetime-local)</label>
+  <input id="d1" name="appointment" type="datetime-local">
+  <button type="submit">Book</button>
+</form>
+<div id="result" role="status"></div>
+<script>
+  var cities = ["Paris", "Pau", "Lyon", "Lille", "Dakar", "Thiès", "Montréal", "Québec"];
+  var input = document.getElementById("city-input"), list = document.getElementById("city-list"), out = document.getElementById("city-out");
+  var timer;
+  function open(items) {
+    list.replaceChildren();
+    items.forEach(function (c) {
+      var li = document.createElement("li");
+      li.setAttribute("role", "option"); li.textContent = c;
+      li.addEventListener("mousedown", function (e) { e.preventDefault(); choose(c); });
+      list.appendChild(li);
+    });
+    list.hidden = items.length === 0;
+    input.setAttribute("aria-expanded", String(items.length > 0));
+  }
+  function choose(c) { input.value = c; out.textContent = c; open([]); }
+  input.addEventListener("input", function () {
+    out.textContent = "(none)";
+    clearTimeout(timer);
+    var q = input.value.trim().toLowerCase();
+    timer = setTimeout(function () {
+      open(q ? cities.filter(function (c) { return c.toLowerCase().indexOf(q) === 0; }) : []);
+    }, 300);
+  });
+  input.addEventListener("blur", function () { setTimeout(function () { open([]); }, 100); });
+  document.querySelectorAll("#lang [role=option]").forEach(function (o) {
+    o.addEventListener("click", function () {
+      document.querySelectorAll("#lang [role=option]").forEach(function (x) { x.setAttribute("aria-selected", "false"); });
+      o.setAttribute("aria-selected", "true");
+      document.getElementById("lang-out").textContent = o.textContent;
+    });
+  });
+</script>
+<script src="/assets/common.js"></script>
+</body>
+</html>

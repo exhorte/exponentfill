@@ -1,0 +1,17 @@
+[project]
+name = "ef-spike-s10"
+version = "0.0.0"
+description = "Throwaway spike S10: PDF extraction engines compared on a fictitious corpus. Not part of the product."
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "docling==2.150.0",
+  "pypdf==7.0.1",
+  "pdfminer.six==20260107",
+  "pypdfium2==5.15.2",
+]
+
+[dependency-groups]
+dev = ["reportlab==5.1.0"]
+
+[tool.uv]
+package = false

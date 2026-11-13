@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "EF Spikes (throwaway)",
+  "version": "0.0.1",
+  "description": "Throwaway spike extension: S1, S2, S4, S6, S7. Not the product.",
+  "minimum_chrome_version": "116",
+  "permissions": ["storage", "scripting", "activeTab", "sidePanel", "offscreen"],
+  "optional_host_permissions": ["http://*/*", "https://*/*"],
+  "host_permissions": ["http://127.0.0.1:5810/*"],
+  "content_security_policy": { "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'" },
+  "background": { "service_worker": "background.js", "type": "module" },
+  "action": { "default_title": "EF spikes" },
+  "side_panel": { "default_path": "sidepanel.html" }
+}

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Basic form (fixture)</title>
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<nav><a href="/">fixtures</a></nav>
+<h1>Account application</h1>
+<form id="f" autocomplete="on">
+  <fieldset>
+    <legend>Identity</legend>
+    <label for="first">First name *</label>
+    <input id="first" name="first_name" type="text" required autocomplete="given-name">
+
+    <label>Last name * <input name="last_name" type="text" required autocomplete="family-name"></label>
+
+    <input name="middle" type="text" aria-label="Middle name (optional)">
+
+    <label id="dob-label" for="dob">Date of birth</label>
+    <input id="dob" name="dob" type="date" aria-labelledby="dob-label">
+
+    <input name="nickname" type="text" placeholder="Nickname (placeholder only)">
+
+    <label for="email">Email *</label>
+    <input id="email" name="email" type="email" required autocomplete="email">
+
+    <label for="phone">Phone</label>
+    <input id="phone" name="phone" type="tel" pattern="[+0-9 ()-]{6,20}" autocomplete="tel">
+
+    <label for="age">Age</label>
+    <input id="age" name="age" type="number" min="0" max="120">
+  </fieldset>
+
+  <fieldset>
+    <legend>Address</legend>
+    <label for="street">Street</label>
+    <input id="street" name="street" type="text" maxlength="60" autocomplete="street-address">
+    <label for="zip">Postal code</label>
+    <input id="zip" name="zip" type="text" inputmode="numeric" maxlength="10" autocomplete="postal-code">
+    <label for="city">City</label>
+    <input id="city" name="city" type="text" autocomplete="address-level2">
+    <label for="country">Country</label>
+    <select id="country" name="country" autocomplete="country">
+      <option value="">Choose…</option>
+      <option value="FR">France</option>
+      <option value="SN">Senegal</option>
+      <option value="CA">Canada</option>
+      <option value="DE">Germany</option>
+    </select>
+  </fieldset>
+
+  <fieldset class="inline">
+    <legend>Employment status</legend>
+    <label><input type="radio" name="status" value="employed"> Employed</label>
+    <label><input type="radio" name="status" value="student"> Student</label>
+    <label><input type="radio" name="status" value="other"> Other</label>
+  </fieldset>
+
+  <fieldset class="inline">
+    <legend>Interests</legend>
+    <label><input type="checkbox" name="interest" value="travel"> Travel</label>
+    <label><input type="checkbox" name="interest" value="tech"> Technology</label>
+    <label><input type="checkbox" name="interest" value="sport"> Sport</label>
+  </fieldset>
+
+  <fieldset>
+    <legend>Other</legend>
+    <label for="notes">Notes</label>
+    <textarea id="notes" name="notes" rows="3" maxlength="200"></textarea>
+    <label for="pw">Password (a secret: must never be filled)</label>
+    <input id="pw" name="password" type="password" autocomplete="new-password">
+    <label for="otp">One-time code (a secret: must never be filled)</label>
+    <input id="otp" name="otp" type="text" inputmode="numeric" autocomplete="one-time-code">
+    <input type="hidden" name="csrf" value="fixture-token">
+    <label for="ro">Read-only reference</label>
+    <input id="ro" name="ref" type="text" value="REF-0001" readonly>
+    <label for="dis">Disabled field</label>
+    <input id="dis" name="disabled_field" type="text" value="locked" disabled>
+  </fieldset>
+
+  <label><input type="checkbox" name="terms" required> I accept the terms (a commit-level consent: never ticked automatically)</label>
+  <button type="submit">Submit application</button>
+  <button type="reset">Reset</button>
+</form>
+<div id="result" role="status"></div>
+<script src="/assets/common.js"></script>
+</body>
+</html>

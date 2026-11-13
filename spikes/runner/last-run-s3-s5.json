@@ -1,0 +1,67 @@
+{
+  "at": "2026-11-12T15:53:41.782Z",
+  "report": [
+    {
+      "name": "S5 fixture server up",
+      "ok": true
+    },
+    {
+      "name": "S5 framework bench is built (spikes/frameworks/dist)",
+      "ok": true,
+      "detail": "run `pnpm build` in spikes/frameworks if this fails"
+    },
+    {
+      "name": "S5 ran 64 cases",
+      "ok": true,
+      "detail": {
+        "cases": 64
+      }
+    },
+    {
+      "name": "S5 NO SILENT FAILURE: the writer never claimed a write that the page's own state does not show",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "S5 secrets, read-only and disabled fields are refused",
+      "ok": true
+    },
+    {
+      "name": "S5 Unicode (Arabic, Cyrillic, CJK, accents) round-trips untouched",
+      "ok": true,
+      "detail": [
+        "success",
+        "success",
+        "success",
+        "success"
+      ]
+    },
+    {
+      "name": "S5 combobox protocol: ambiguous and no-match are EXPLICIT failures, never a false selection",
+      "ok": true
+    },
+    {
+      "name": "S5 closed and nested shadow roots are written",
+      "ok": true,
+      "detail": [
+        "success",
+        "success",
+        "success",
+        "success"
+      ]
+    },
+    {
+      "name": "S5 plain React, Vue and Angular state follows the writes",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "S5 overall verified-write rate is measured (informative; the invariant is zero silent failure)",
+      "ok": true,
+      "detail": {
+        "rate": "100%",
+        "of": 56
+      }
+    }
+  ]
+}

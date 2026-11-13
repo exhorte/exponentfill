@@ -1,0 +1,14 @@
+{
+  "name": "@exponent-fill/spikes-runner",
+  "version": "0.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "description": "Throwaway: offline rehearsal of the spike skeletons in Playwright's Chromium. Not part of the product.",
+  "type": "module",
+  "scripts": {
+    "rehearse": "node rehearse.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.62.0"
+  }
+}

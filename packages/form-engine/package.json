@@ -1,0 +1,22 @@
+{
+  "name": "@exponent-fill/form-engine",
+  "version": "0.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "description": "Form understanding: scan a DOM, label and classify fields, classify buttons, serialize STRUCTURE (never values) for a model.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@exponent-fill/fixtures": "workspace:*",
+    "@types/jsdom": "30.0.0",
+    "jsdom": "30.1.3",
+    "typescript": "6.0.3",
+    "vitest": "5.1.0"
+  }
+}

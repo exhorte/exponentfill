@@ -1,0 +1,45 @@
+# Dependencies and build output
+node_modules/
+.pnpm-store/
+dist/
+.output/
+.wxt/
+coverage/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Tests
+playwright-report/
+test-results/
+
+# Spikes (throwaway): heavy or regenerable artefacts
+spikes/s10/models/
+spikes/s10/out/
+spikes/s10/results*.json
+spikes/frameworks/dist/
+spikes/runner/last-run.json
+spikes/runner/rehearsal*-output.txt
+spikes/*.log
+
+# Environment and secrets — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Logs and OS files
+*.log
+.DS_Store
+Thumbs.db
+
+# Reference material must never live in this repository
+references-externes/
+
+# Backend runtime data (dev master key, uploaded blobs): never commit
+var/

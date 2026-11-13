@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Several hidden inputs (S3)</title>
+<style>body{font:14px system-ui,sans-serif;max-width:44rem;margin:1rem auto;padding:0 1rem}section{border:1px solid #8886;padding:.6rem;margin:.6rem 0}.out{font:12px ui-monospace,monospace}</style></head>
+<body>
+<h1>Attachments menu (several hidden inputs)</h1>
+<section><label for="photos">Photos</label><input id="photos" type="file" accept="image/*" multiple style="display:none"><div class="out" id="o-photos"></div></section>
+<section><label for="cv">CV / Résumé</label><input id="cv" type="file" accept=".pdf,.doc,.docx" data-max-size="20971520" style="display:none"><div class="out" id="o-cv"></div></section>
+<section><label for="docs">Other documents</label><input id="docs" type="file" accept=".pdf" multiple style="display:none"><div class="out" id="o-docs"></div></section>
+<section><label for="letter">Cover letter (max 1 KB)</label><input id="letter" type="file" accept=".pdf" data-max-size="1024" style="display:none"><div class="out" id="o-letter"></div></section>
+<script>
+for (const el of document.querySelectorAll("input[type=file]")) el.addEventListener("change", () => {
+  document.getElementById("o-" + el.id).textContent = Array.from(el.files).map(f => f.name + " (" + f.size + ")").join(", ");
+});
+</script></body></html>

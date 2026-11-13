@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open and nested shadow roots (fixture, S4)</title>
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<nav><a href="/">fixtures</a></nav>
+<h1>Open and nested shadow roots</h1>
+<ef-open-field label="Open shadow field" name="open_field" id="open1"></ef-open-field>
+<ef-nested label="Open inside a closed root" name="nested_field" id="nested1"></ef-nested>
+<p>Readout: <strong id="readout">(nothing typed yet)</strong></p>
+<script>
+  function makeField(root, name, text) {
+    var label = document.createElement("label");
+    label.textContent = text;
+    var input = document.createElement("input");
+    input.type = "text"; input.name = name; input.setAttribute("aria-label", text);
+    label.appendChild(input);
+    root.appendChild(label);
+    input.addEventListener("input", function () {
+      document.getElementById("readout").textContent = name + " = " + input.value;
+    });
+  }
+  customElements.define("ef-open-field", class extends HTMLElement {
+    constructor() { super(); makeField(this.attachShadow({ mode: "open" }), this.getAttribute("name"), this.getAttribute("label")); }
+  });
+  // A closed root that contains an element hosting an OPEN root (nesting).
+  // Built in connectedCallback: the host sets the attributes AFTER createElement() ran the constructor.
+  customElements.define("ef-inner", class extends HTMLElement {
+    connectedCallback() {
+      if (this.shadowRoot) return;
+      makeField(this.attachShadow({ mode: "open" }), this.getAttribute("name"), this.getAttribute("label"));
+    }
+  });
+  customElements.define("ef-nested", class extends HTMLElement {
+    constructor() {
+      super();
+      var closed = this.attachShadow({ mode: "closed" });
+      var inner = document.createElement("ef-inner");
+      inner.setAttribute("name", this.getAttribute("name"));
+      inner.setAttribute("label", this.getAttribute("label"));
+      closed.appendChild(inner);
+    }
+  });
+</script>
+</body>
+</html>

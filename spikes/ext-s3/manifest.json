@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "EF S3 spike (throwaway)",
+  "version": "0.0.1",
+  "description": "Throwaway spike S3: vault file -> web page transfer strategies. Not the product.",
+  "minimum_chrome_version": "116",
+  "permissions": ["storage", "scripting", "offscreen", "sidePanel"],
+  "host_permissions": ["http://localhost/*", "http://127.0.0.1/*", "http://*.localhost/*"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_title": "EF S3" },
+  "side_panel": { "default_path": "sidepanel.html" }
+}

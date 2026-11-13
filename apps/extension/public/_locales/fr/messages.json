@@ -1,0 +1,285 @@
+{
+  "extName": {
+    "message": "Exponent Fill",
+    "description": "Nom du produit. Nom de travail, à confirmer avant toute publication."
+  },
+  "extDescription": {
+    "message": "Remplissage de formulaires assisté par IA, sous votre contrôle."
+  },
+  "appTitle": {
+    "message": "Exponent Fill"
+  },
+  "backendLabel": {
+    "message": "Serveur"
+  },
+  "backendChecking": {
+    "message": "Vérification…"
+  },
+  "backendOk": {
+    "message": "Connecté"
+  },
+  "backendUnreachable": {
+    "message": "Injoignable"
+  },
+  "backendTimeout": {
+    "message": "Aucune réponse"
+  },
+  "backendInvalid": {
+    "message": "Réponse inattendue"
+  },
+  "backendRejected": {
+    "message": "Requête rejetée"
+  },
+  "databaseLabel": {
+    "message": "Base de données"
+  },
+  "databaseOk": {
+    "message": "Prête"
+  },
+  "databaseUnconfigured": {
+    "message": "Non configurée"
+  },
+  "databaseUnreachable": {
+    "message": "Injoignable"
+  },
+  "retry": {
+    "message": "Vérifier à nouveau"
+  },
+  "vaultTitle": {
+    "message": "Coffre"
+  },
+  "vaultConnect": {
+    "message": "Connecter votre coffre"
+  },
+  "vaultTokenHint": {
+    "message": "Collez le jeton d'appareil créé dans le tableau de bord (Confidentialité et sécurité)."
+  },
+  "vaultTokenLabel": {
+    "message": "Jeton d'appareil"
+  },
+  "vaultSave": {
+    "message": "Connecter"
+  },
+  "vaultDisconnect": {
+    "message": "Déconnecter"
+  },
+  "vaultConnected": {
+    "message": "Connecté"
+  },
+  "vaultNotConnected": {
+    "message": "Non connecté"
+  },
+  "vaultSync": {
+    "message": "Synchroniser"
+  },
+  "vaultCached": {
+    "message": "informations disponibles hors ligne"
+  },
+  "vaultQueued": {
+    "message": "propositions en attente d'envoi"
+  },
+  "vaultUnauthorized": {
+    "message": "Le jeton a été refusé. Créez-en un nouveau dans le tableau de bord."
+  },
+  "pageTitle": {
+    "message": "Cette page"
+  },
+  "pageScan": {
+    "message": "Chercher un formulaire sur cette page"
+  },
+  "pageScanning": {
+    "message": "Analyse…"
+  },
+  "pageNoTab": {
+    "message": "Ouvrez d'abord une page web."
+  },
+  "pageNoAccess": {
+    "message": "Pas d'accès à cette page. Cliquez sur l'icône de l'extension sur la page, ou autorisez ce site."
+  },
+  "pageInvalid": {
+    "message": "La page a répondu de façon inattendue."
+  },
+  "pageNoFields": {
+    "message": "Aucun champ à remplir trouvé."
+  },
+  "pageFields": {
+    "message": "champs trouvés"
+  },
+  "pageSecretsSkipped": {
+    "message": "champs secrets : jamais remplis"
+  },
+  "pageCommitButtons": {
+    "message": "boutons engageants (c'est vous qui les actionnez)"
+  },
+  "matchSearch": {
+    "message": "Chercher dans mon coffre"
+  },
+  "matchOffline": {
+    "message": "Hors ligne : seules les informations enregistrées sur cet appareil sont proposées."
+  },
+  "decisionFill": {
+    "message": "Prêt"
+  },
+  "decisionSuggest": {
+    "message": "Demande votre confirmation"
+  },
+  "decisionNone": {
+    "message": "Laissé vide"
+  },
+  "trustDeclared": {
+    "message": "Déclarée"
+  },
+  "trustExtracted": {
+    "message": "Extraite"
+  },
+  "trustVerified": {
+    "message": "Vérifiée"
+  },
+  "trustInferred": {
+    "message": "Déduite"
+  },
+  "reasonPending": {
+    "message": "pas encore validée"
+  },
+  "reasonConflict": {
+    "message": "en conflit"
+  },
+  "reasonNoOption": {
+    "message": "aucune option correspondante"
+  },
+  "reasonSensitive": {
+    "message": "sensible, non confirmée"
+  },
+  "reasonSecret": {
+    "message": "secret : jamais rempli"
+  },
+  "reasonConsent": {
+    "message": "consentement : vous seul décidez"
+  },
+  "reasonNothing": {
+    "message": "rien dans le coffre"
+  },
+  "reasonOther": {
+    "message": "inutilisable"
+  },
+  "fillNote": {
+    "message": "Rien n'est jamais envoyé : vérifiez la page, puis envoyez-la vous-même. Les boutons qui engagent (envoyer, payer, signer, supprimer) ne sont jamais actionnés."
+  },
+  "stateKnown": {
+    "message": "Connu"
+  },
+  "stateInferred": {
+    "message": "À confirmer"
+  },
+  "stateConflict": {
+    "message": "En conflit"
+  },
+  "stateMissing": {
+    "message": "Manquant"
+  },
+  "stateEmpty": {
+    "message": "Vide"
+  },
+  "stateSkipped": {
+    "message": "jamais remplis"
+  },
+  "reviewToComplete": {
+    "message": "À compléter : champs obligatoires sans rien dans le coffre"
+  },
+  "reviewAlreadyFilled": {
+    "message": "déjà rempli"
+  },
+  "reviewApprovalNote": {
+    "message": "Cocher une suggestion l'approuve pour ce remplissage seulement : cela ne valide pas l'information dans votre coffre."
+  },
+  "reasonDisabled": {
+    "message": "le champ est désactivé"
+  },
+  "reasonReadOnly": {
+    "message": "le champ est en lecture seule"
+  },
+  "reasonFile": {
+    "message": "les fichiers ne sont pas encore pris en charge"
+  },
+  "fillRun": {
+    "message": "Remplir les champs cochés"
+  },
+  "fillRunning": {
+    "message": "Remplissage…"
+  },
+  "fillResults": {
+    "message": "Résultat"
+  },
+  "fillStatusWritten": {
+    "message": "écrit et vérifié"
+  },
+  "fillStatusAlready": {
+    "message": "déjà correct"
+  },
+  "fillStatusFailed": {
+    "message": "échec"
+  },
+  "fillStatusRefused": {
+    "message": "refusé"
+  },
+  "fillUndo": {
+    "message": "Annuler le dernier remplissage"
+  },
+  "fillUndoNote": {
+    "message": "L'annulation fonctionne jusqu'au rechargement de la page. Les listes déroulantes personnalisées ne sont pas restaurables."
+  },
+  "fillRestored": {
+    "message": "restauré"
+  },
+  "fillRestoreFailed": {
+    "message": "restauration impossible"
+  },
+  "fillNewFields": {
+    "message": "La page affiche de nouveaux champs : relancez l'analyse pour les examiner."
+  },
+  "fillPageChanged": {
+    "message": "La page a changé depuis l'analyse : relancez l'analyse."
+  },
+  "codeNotFound": {
+    "message": "champ introuvable"
+  },
+  "codeSecret": {
+    "message": "secret : jamais rempli"
+  },
+  "codeCommit": {
+    "message": "un bouton : jamais actionné"
+  },
+  "codeNoOption": {
+    "message": "aucune option correspondante"
+  },
+  "codeAmbiguous": {
+    "message": "plusieurs options correspondent"
+  },
+  "codeMaxlength": {
+    "message": "plus long que ce que le champ accepte"
+  },
+  "codeInvalid": {
+    "message": "invalide pour ce champ"
+  },
+  "codeReadback": {
+    "message": "la page n'a pas conservé la valeur"
+  },
+  "codeOther": {
+    "message": "non écrit"
+  },
+  "auditTitle": {
+    "message": "Historique"
+  },
+  "auditNoValues": {
+    "message": "Les valeurs ne sont jamais enregistrées."
+  },
+  "auditEmpty": {
+    "message": "Aucun remplissage."
+  },
+  "auditClear": {
+    "message": "Effacer l'historique"
+  },
+  "auditUndone": {
+    "message": "annulé"
+  }
+}

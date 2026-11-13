@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "EF S5 writer spike (throwaway)",
+  "version": "0.0.1",
+  "description": "Throwaway spike S5: write + exact read-back on the framework bench. Not the product.",
+  "minimum_chrome_version": "116",
+  "permissions": ["scripting", "sidePanel", "tabs"],
+  "host_permissions": ["http://localhost/*", "http://127.0.0.1/*", "http://*.localhost/*"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_title": "EF S5" },
+  "side_panel": { "default_path": "sidepanel.html" }
+}

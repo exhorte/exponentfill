@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EF S3 spike</title>
+<style>
+  :root { color-scheme: light dark; font-family: system-ui, sans-serif; font-size: 13px; }
+  body { margin: 0; padding: .6rem; }
+  h1 { font-size: 1rem; margin: 0 0 .4rem; }
+  label { display: inline-block; margin: .2rem .6rem .2rem 0; }
+  button { margin: .2rem .3rem .2rem 0; padding: .3rem .6rem; cursor: pointer; }
+  pre { white-space: pre-wrap; word-break: break-word; background: #8882; padding: .4rem; max-height: 18rem; overflow: auto; }
+  .hint { opacity: .75; font-size: .8rem; }
+</style>
+</head>
+<body>
+<h1>EF S3 — vault file → page</h1>
+<p class="hint">Needs <code>node spikes/ext-s3/server.mjs</code> (port 5821). Active tab: <code id="tab">(none)</code></p>
+<div>
+  <label>strategy <select id="strategy">
+    <option value="push">push: base64 chunks via executeScript args</option>
+    <option value="pull">pull: content script ↔ offscreen port</option>
+    <option value="bloburl">blob URL from the extension page</option>
+  </select></label>
+  <label>size (MB) <select id="size"><option>1</option><option selected>10</option><option>50</option></select></label>
+  <label>target <select id="target">
+    <option value='{"selector":"#up-a"}'>A visible input (pdf)</option>
+    <option value='{"selector":"#up-b"}'>B hidden input behind a label</option>
+    <option value='{"dropzone":"#drop"}'>C drop zone</option>
+    <option value='{"hint":"cv"}'>auto: choose among several inputs</option>
+  </select></label>
+</div>
+<div><button id="run">Transfer + place</button> <button id="all">Run all strategies for this size/target</button> <button id="copy">Copy results</button> <button id="clear">Clear</button></div>
+<pre id="log"></pre>
+<script type="module" src="sidepanel.js"></script>
+</body>
+</html>

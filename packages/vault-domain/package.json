@@ -1,0 +1,25 @@
+{
+  "name": "@exponent-fill/vault-domain",
+  "version": "0.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "description": "Client-side rules of the Personal Knowledge Vault: trust display, form-structure to match request, fill plan, offline cache and proposal queue. No network, no storage: pure functions.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@exponent-fill/form-engine": "workspace:*",
+    "@exponent-fill/shared-types": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "6.0.3",
+    "vitest": "5.1.0",
+    "jsdom": "30.1.3",
+    "@types/jsdom": "30.0.0"
+  }
+}

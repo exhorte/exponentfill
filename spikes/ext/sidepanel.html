@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EF spikes</title>
+<style>
+  :root { color-scheme: light dark; font-family: system-ui, sans-serif; font-size: 13px; }
+  body { margin: 0; padding: .6rem; }
+  h1 { font-size: 1rem; margin: 0 0 .4rem; }
+  h2 { font-size: .9rem; margin: 1rem 0 .3rem; border-bottom: 1px solid #8886; }
+  button { margin: .15rem .2rem .15rem 0; padding: .3rem .55rem; cursor: pointer; }
+  input[type=text], input[type=password], input[type=number] { padding: .25rem; width: 9rem; }
+  pre { white-space: pre-wrap; word-break: break-word; background: #8882; padding: .4rem; max-height: 14rem; overflow: auto; margin: .3rem 0; }
+  .hint { opacity: .75; font-size: .8rem; }
+</style>
+</head>
+<body>
+<h1>EF spikes <span class="hint" id="ver"></span></h1>
+<p class="hint">Throwaway. Each button writes a line to the log; <b>Copy results</b> gives JSON to paste into the results template.</p>
+<div>
+  <button id="copy">Copy results</button> <button id="clear">Clear log</button>
+</div>
+
+<h2>S1 — side panel, messaging</h2>
+<button id="s1-ping">Typed round trip (panel → SW)</button>
+<button id="s1-tab-only">Panel for THIS tab only</button>
+<button id="s1-tab-reset">Panel for all tabs</button>
+<button id="s1-fake">Round trip from a content script (must be rejected)</button>
+
+<h2>S2 — per-site permissions</h2>
+<div class="hint">Active tab: <code id="s2-tab">(unknown)</code></div>
+<button id="s2-origins">Show granted permissions</button>
+<button id="s2-request">Request access to this site's origin</button>
+<button id="s2-inject">Inject into this tab (all frames)</button>
+<button id="s2-frames">List frames of this tab</button>
+<button id="s2-register">Register content script dynamically for this origin</button>
+<button id="s2-unregister">Unregister dynamic scripts</button>
+<button id="s2-request-all">Request ALL sites (https + http)</button>
+<button id="s2-remove-all">Remove all optional access</button>
+<button id="s2-activetab">Inject using activeTab only (no grant)</button>
+
+<h2>S4 — closed shadow root</h2>
+<div class="hint">Open <code>http://localhost:5800/shadow-closed.html</code> in the active tab first, then grant access (S2).</div>
+<input id="s4-text" type="text" value="ACME SARL" aria-label="text to write">
+<button id="s4-run">Read + write via openOrClosedShadowRoot</button>
+<button id="s4-open">Same on shadow-open.html (nested)</button>
+
+<h2>S6 — long streaming call</h2>
+<div class="hint">Needs <code>node spikes/server/fake-llm.mjs</code>. Duration (s): <input id="s6-total" type="number" value="300" min="5" max="1800" style="width:4rem">
+ silence (s): <input id="s6-silence" type="number" value="90" min="0" max="600" style="width:4rem"> at <input id="s6-at" type="number" value="20" style="width:4rem"> s
+ · header delay (s): <input id="s6-hdelay" type="number" value="0" min="0" max="600" style="width:4rem"> (response headers arrive late)</div>
+<button id="s6-panel">(a) fetch from the side panel page</button>
+<button id="s6-sw">(b) fetch inside the service worker</button>
+<button id="s6-port">(c) panel fetch + keep-alive port to the SW</button>
+<button id="s6-offscreen">(d) fetch in an offscreen document</button>
+
+<h2>S7 — vault encryption</h2>
+<input id="s7-pass" type="password" value="correct horse battery staple" aria-label="passphrase (test)">
+<input id="s7-iter" type="number" value="600000" style="width:6rem" aria-label="PBKDF2 iterations">
+<button id="s7-derive">Derive key (PBKDF2) + AES-GCM round trip</button>
+<button id="s7-session">Put key in storage.session</button>
+<button id="s7-cs">Try to read it from a content script</button>
+<button id="s7-level">Set session access level TRUSTED_AND_UNTRUSTED, retry</button>
+<button id="s7-argon">Argon2id (hash-wasm), if vendored</button>
+
+<h2>Log</h2>
+<pre id="log"></pre>
+<script type="module" src="sidepanel.js"></script>
+</body>
+</html>

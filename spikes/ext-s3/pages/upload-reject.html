@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Server-side rejection after preview (S3)</title>
+<style>body{font:14px system-ui,sans-serif;max-width:44rem;margin:1rem auto;padding:0 1rem}.error{color:#b00020}.ok{color:#066}</style></head>
+<body>
+<h1>Upload with late rejection</h1>
+<form class="upload"><label for="up-r">Résumé (max 5 MB)</label> <input id="up-r" type="file" accept=".pdf">
+  <div id="preview"></div><div id="status"></div></form>
+<script>
+// The preview shows the file name immediately; a "server" answers 300 ms later and rejects big files.
+// A name on screen is NOT proof of acceptance: a visible error must make the transfer a failure.
+document.getElementById("up-r").addEventListener("change", e => {
+  const f = e.target.files[0];
+  document.getElementById("preview").textContent = f ? f.name : "";
+  setTimeout(() => {
+    const s = document.getElementById("status");
+    if (f && f.size > 5 * 1024 * 1024) { s.className = "error"; s.setAttribute("role", "alert"); s.textContent = "File too large (max 5 MB)"; }
+    else { s.className = "ok"; s.textContent = "Uploaded"; }
+  }, 300);
+});
+</script></body></html>

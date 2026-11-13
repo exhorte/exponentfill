@@ -1,0 +1,9 @@
+# This folder is its own pnpm workspace root: its (heavy) dependencies must never enter the product lockfile.
+packages: []
+
+# pnpm 11 refuses packages younger than minimumReleaseAge (default 1 day) — a supply-chain safeguard against
+# hijacked fresh releases. Do NOT add minimumReleaseAgeExclude entries to get around it: pin an older version instead.
+
+# No dependency may run install scripts. esbuild ships its binary as a platform package; its script is optional.
+allowBuilds:
+  esbuild: false

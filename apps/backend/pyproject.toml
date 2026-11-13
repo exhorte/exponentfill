@@ -1,0 +1,52 @@
+[project]
+name = "exponent-fill-backend"
+version = "0.0.0"
+description = "Exponent Fill backend (working name). Proprietary, all rights reserved."
+requires-python = ">=3.12,<3.14"
+license = { text = "Proprietary" }
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "pydantic>=2.8",
+    "pydantic-settings>=2.4",
+    "psycopg[binary]>=3.2",
+    "sqlalchemy>=2.0",
+    "alembic>=1.13",
+    "argon2-cffi>=25.1.0",
+    "cryptography>=50.0.2",
+    "python-multipart>=0.0.33",
+    "pypdf>=7.0.1",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "httpx>=0.27",
+    "ruff>=0.6",
+    "pyyaml>=6",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 170
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S"]
+
+[tool.ruff.lint.per-file-ignores]
+# S101: asserts are the point of tests. S105: the "secret" in the leak test is a deliberate fake.
+"tests/*" = ["S101", "S105", "S106"]
+# FastAPI idiom: Depends()/File() in argument defaults.
+"app/**/api.py" = ["B008"]
+"app/api/deps.py" = ["B008"]
+# The setting NAME contains "password" (a hashing profile, not a secret).
+"app/config.py" = ["S105"]
+# Internal invariants after a lookup that cannot be None by construction.
+"app/domains/*/service.py" = ["S101"]
+"app/domains/vault/matching.py" = ["S101"]
+# Regular expressions are easier to audit on one line.
+"app/domains/documents/facts.py" = ["E501"]

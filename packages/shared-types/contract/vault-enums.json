@@ -1,0 +1,11 @@
+{
+  "origin": ["declared", "extracted", "inferred"],
+  "verification_level": ["none", "user_confirmed", "document_backed"],
+  "validation_status": ["pending_review", "validated", "rejected", "superseded"],
+  "sensitivity": ["normal", "sensitive"],
+  "category": ["personal", "contact", "professional", "academic", "skills", "certifications", "experience", "administrative", "other"],
+  "trust_class": ["declared", "extracted", "verified", "inferred"],
+  "value_type": ["text", "date", "number", "boolean"],
+  "document_status": ["uploaded", "extracting", "extracted", "needs_review", "needs_ocr", "failed", "replaced", "deleted"],
+  "scopes": ["vault.read", "vault.write", "vault.propose", "vault.validate", "documents.read", "documents.write", "account.manage"]
+}

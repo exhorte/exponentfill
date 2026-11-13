@@ -1,0 +1,285 @@
+{
+  "extName": {
+    "message": "Exponent Fill",
+    "description": "Product name. Working name, to be confirmed before any public release."
+  },
+  "extDescription": {
+    "message": "AI-assisted form filling that keeps you in control."
+  },
+  "appTitle": {
+    "message": "Exponent Fill"
+  },
+  "backendLabel": {
+    "message": "Backend"
+  },
+  "backendChecking": {
+    "message": "Checking…"
+  },
+  "backendOk": {
+    "message": "Connected"
+  },
+  "backendUnreachable": {
+    "message": "Unreachable"
+  },
+  "backendTimeout": {
+    "message": "No response"
+  },
+  "backendInvalid": {
+    "message": "Unexpected response"
+  },
+  "backendRejected": {
+    "message": "Request rejected"
+  },
+  "databaseLabel": {
+    "message": "Database"
+  },
+  "databaseOk": {
+    "message": "Ready"
+  },
+  "databaseUnconfigured": {
+    "message": "Not configured"
+  },
+  "databaseUnreachable": {
+    "message": "Unreachable"
+  },
+  "retry": {
+    "message": "Check again"
+  },
+  "vaultTitle": {
+    "message": "Vault"
+  },
+  "vaultConnect": {
+    "message": "Connect to your vault"
+  },
+  "vaultTokenHint": {
+    "message": "Paste the device token created in the dashboard (Privacy & security)."
+  },
+  "vaultTokenLabel": {
+    "message": "Device token"
+  },
+  "vaultSave": {
+    "message": "Connect"
+  },
+  "vaultDisconnect": {
+    "message": "Disconnect"
+  },
+  "vaultConnected": {
+    "message": "Connected"
+  },
+  "vaultNotConnected": {
+    "message": "Not connected"
+  },
+  "vaultSync": {
+    "message": "Synchronise"
+  },
+  "vaultCached": {
+    "message": "facts available offline"
+  },
+  "vaultQueued": {
+    "message": "proposals waiting to be sent"
+  },
+  "vaultUnauthorized": {
+    "message": "The token was refused. Create a new one in the dashboard."
+  },
+  "pageTitle": {
+    "message": "This page"
+  },
+  "pageScan": {
+    "message": "Look for a form on this page"
+  },
+  "pageScanning": {
+    "message": "Scanning…"
+  },
+  "pageNoTab": {
+    "message": "Open a web page first."
+  },
+  "pageNoAccess": {
+    "message": "No access to this page. Click the extension icon on the page, or allow this site."
+  },
+  "pageInvalid": {
+    "message": "The page answered with an unexpected result."
+  },
+  "pageNoFields": {
+    "message": "No fillable field found."
+  },
+  "pageFields": {
+    "message": "fields found"
+  },
+  "pageSecretsSkipped": {
+    "message": "secret fields are never filled"
+  },
+  "pageCommitButtons": {
+    "message": "buttons that commit (you press them yourself)"
+  },
+  "matchSearch": {
+    "message": "Search my vault"
+  },
+  "matchOffline": {
+    "message": "Offline: showing only what is saved on this device."
+  },
+  "decisionFill": {
+    "message": "Ready"
+  },
+  "decisionSuggest": {
+    "message": "Needs your confirmation"
+  },
+  "decisionNone": {
+    "message": "Left empty"
+  },
+  "trustDeclared": {
+    "message": "Declared"
+  },
+  "trustExtracted": {
+    "message": "Extracted"
+  },
+  "trustVerified": {
+    "message": "Verified"
+  },
+  "trustInferred": {
+    "message": "Inferred"
+  },
+  "reasonPending": {
+    "message": "not validated yet"
+  },
+  "reasonConflict": {
+    "message": "in conflict"
+  },
+  "reasonNoOption": {
+    "message": "no matching option"
+  },
+  "reasonSensitive": {
+    "message": "sensitive, not confirmed"
+  },
+  "reasonSecret": {
+    "message": "secret: never filled"
+  },
+  "reasonConsent": {
+    "message": "consent: only you decide"
+  },
+  "reasonNothing": {
+    "message": "nothing in the vault"
+  },
+  "reasonOther": {
+    "message": "not usable"
+  },
+  "fillNote": {
+    "message": "Nothing is ever submitted: check the page, then submit it yourself. Buttons that commit (send, pay, sign, delete) are never pressed."
+  },
+  "stateKnown": {
+    "message": "Known"
+  },
+  "stateInferred": {
+    "message": "To confirm"
+  },
+  "stateConflict": {
+    "message": "In conflict"
+  },
+  "stateMissing": {
+    "message": "Missing"
+  },
+  "stateEmpty": {
+    "message": "Empty"
+  },
+  "stateSkipped": {
+    "message": "never filled"
+  },
+  "reviewToComplete": {
+    "message": "To complete: required fields with nothing in the vault"
+  },
+  "reviewAlreadyFilled": {
+    "message": "already filled"
+  },
+  "reviewApprovalNote": {
+    "message": "Ticking a suggestion approves it for this fill only: it does not validate the fact in your vault."
+  },
+  "reasonDisabled": {
+    "message": "the field is disabled"
+  },
+  "reasonReadOnly": {
+    "message": "the field is read-only"
+  },
+  "reasonFile": {
+    "message": "files are not handled yet"
+  },
+  "fillRun": {
+    "message": "Fill the ticked fields"
+  },
+  "fillRunning": {
+    "message": "Filling…"
+  },
+  "fillResults": {
+    "message": "Result"
+  },
+  "fillStatusWritten": {
+    "message": "written and verified"
+  },
+  "fillStatusAlready": {
+    "message": "already correct"
+  },
+  "fillStatusFailed": {
+    "message": "failed"
+  },
+  "fillStatusRefused": {
+    "message": "refused"
+  },
+  "fillUndo": {
+    "message": "Undo the last fill"
+  },
+  "fillUndoNote": {
+    "message": "Undo works until the page is reloaded. Combo boxes and lists cannot be restored."
+  },
+  "fillRestored": {
+    "message": "restored"
+  },
+  "fillRestoreFailed": {
+    "message": "could not be restored"
+  },
+  "fillNewFields": {
+    "message": "The page now shows more fields: scan again to review them."
+  },
+  "fillPageChanged": {
+    "message": "The page changed since the scan: scan again."
+  },
+  "codeNotFound": {
+    "message": "field not found"
+  },
+  "codeSecret": {
+    "message": "secret: never filled"
+  },
+  "codeCommit": {
+    "message": "a button: never pressed"
+  },
+  "codeNoOption": {
+    "message": "no matching option"
+  },
+  "codeAmbiguous": {
+    "message": "several options match"
+  },
+  "codeMaxlength": {
+    "message": "longer than the field allows"
+  },
+  "codeInvalid": {
+    "message": "invalid for this field"
+  },
+  "codeReadback": {
+    "message": "the page did not keep the value"
+  },
+  "codeOther": {
+    "message": "not written"
+  },
+  "auditTitle": {
+    "message": "History"
+  },
+  "auditNoValues": {
+    "message": "Values are never recorded."
+  },
+  "auditEmpty": {
+    "message": "No fill yet."
+  },
+  "auditClear": {
+    "message": "Clear history"
+  },
+  "auditUndone": {
+    "message": "undone"
+  }
+}

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spike fixtures</title>
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<h1>Spike fixtures (throwaway)</h1>
+<p class="hint">Fake data only. Submitting never sends anything. Open the same page on several origins to test per-site permissions (S2):
+<code id="origins"></code></p>
+<ul>
+  <li><a href="/form-basic.html">form-basic</a> — plain English form, every labelling technique (S1, S2, mapping)</li>
+  <li><a href="/form-fr.html">form-fr</a> — French administrative form, Unicode names</li>
+  <li><a href="/form-multistep.html">form-multistep</a> — 3 steps, DOM replaced between steps</li>
+  <li><a href="/form-combobox.html">form-combobox</a> — hand-made ARIA combobox/listbox, async options, datalist</li>
+  <li><a href="/form-iframe.html">form-iframe</a> — parent page + two cross-origin iframes (S2)</li>
+  <li><a href="/shadow-closed.html">shadow-closed</a> — web component, <code>mode: 'closed'</code> (S4)</li>
+  <li><a href="/shadow-open.html">shadow-open</a> — open and nested shadow roots (S4)</li>
+  <li><a href="/upload.html">upload</a> — three file-upload patterns (S3 fixture only)</li>
+  <li><a href="/richtext.html">richtext</a> — contenteditable + textarea</li>
+  <li><a href="/trap-submit.html">trap-submit</a> — commit button and a prompt-injection text block (security invariants)</li>
+</ul>
+<p>Test asset: <a href="/gen/file?mb=10&amp;seed=1">/gen/file?mb=10&amp;seed=1</a> (deterministic bytes, <code>x-sha256</code> header).</p>
+<p>Framework bench (S5), after <code>pnpm build</code> in <code>spikes/frameworks</code>: <a href="/fx/">/fx/</a></p>
+<script>
+  var p = location.port ? ":" + location.port : "";
+  document.getElementById("origins").textContent =
+    ["localhost", "127.0.0.1", "a.localhost", "b.localhost", "c.localhost"].map(function (h) { return "http://" + h + p; }).join("  ");
+</script>
+</body>
+</html>

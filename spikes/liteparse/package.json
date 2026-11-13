@@ -1,0 +1,12 @@
+{
+  "name": "ef-spike-liteparse",
+  "version": "0.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "description": "Throwaway S10: evaluate LiteParse (WASM) on the fictitious corpus. Not part of the product.",
+  "packageManager": "pnpm@11.8.0",
+  "type": "module",
+  "dependencies": {
+    "@llamaindex/liteparse-wasm": "2.18.0"
+  }
+}
