@@ -67,7 +67,10 @@ def test_documents_end_to_end_on_the_database_store(env: Env, alice) -> None:  #
         assert s.scalar(select(func.count()).select_from(StoredBlob)) == 0  # the purge removed the stored blob
 
 
-def test_runtime_chooses_the_store_from_settings(tmp_path) -> None:  # noqa: ANN001
+def test_runtime_chooses_the_store_from_settings(tmp_path, monkeypatch) -> None:  # noqa: ANN001
+    # The CI job exports EF_DATABASE_URL for its PostgreSQL service: this test must not depend on the process environment.
+    for var in ("EF_DATABASE_URL", "EF_ENV", "EF_BLOB_BACKEND"):
+        monkeypatch.delenv(var, raising=False)
     base = dict(master_key="AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQE=", password_hash_profile="fast")
     assert type(build_runtime(Settings(storage_dir=str(tmp_path), **base)).blobs).__name__ == "FileBlobStore"  # type: ignore[arg-type]
     db = build_runtime(Settings(blob_backend="db", database_url="sqlite+pysqlite:///:memory:", **base))  # type: ignore[arg-type]
