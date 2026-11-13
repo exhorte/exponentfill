@@ -2,15 +2,17 @@
 # Vercel (apps/dashboard/vercel.json), which forwards /v1 to this API so the browser stays on ONE origin (ADR-024).
 # Read docs/DEPLOYMENT.md before creating it: EF_MASTER_KEY is YOURS to generate, keep and back up; Render never generates it.
 #
-# Plan ids below are the ones Render documents today; if Render rejects one, pick another from the dashboard. The `free` plans are
-# NOT suitable for personal data (a free web service sleeps; a free database is temporary).
+# FREE plans, by the owner's choice (2026-11-13): DEMO DATA ONLY. A free database is deleted about 30 days after its creation (Render
+# suspends it, then deletes it) and has no backups; a free web service goes to sleep after 15 minutes without traffic (the next request
+# waits about a minute) and shares the workspace's monthly free hours. Never store real personal data here; to keep real data, switch both
+# plans to a paid one (docs/DEPLOYMENT.md, ADR-024) and add a payment method to the Render account.
 
 databases:
   - name: exponent-fill-db
     databaseName: exponent_fill
     user: exponent_fill
     region: frankfurt
-    plan: 0.1c-256mb
+    plan: free
     postgresMajorVersion: "18"
     # No connection from outside: only the API reaches the database, over Render's private network.
     # Add your own address here if you ever need psql or pg_dump from your machine.
@@ -21,7 +23,7 @@ services:
     name: exponent-fill-api
     runtime: docker
     region: frankfurt
-    plan: 0.5c-512mb
+    plan: free
     dockerfilePath: ./apps/backend/Dockerfile
     dockerContext: ./apps/backend
     healthCheckPath: /health

@@ -45,7 +45,14 @@ def test_the_database_is_in_the_eu_and_closed_to_the_outside() -> None:
     assert ENV["EF_DATABASE_URL"]["fromDatabase"]["name"] == db["name"]
     assert db["region"] == API["region"] == "frankfurt"
     assert db["ipAllowList"] == []  # nothing outside Render's private network
-    assert "free" not in (db["plan"], API["plan"])  # a free database is temporary and a free service sleeps: not for personal data
+
+
+def test_free_plans_are_a_demo_choice_and_the_file_says_so() -> None:
+    # The owner chose the free plans (2026-11-13). A free database is deleted after about 30 days and a free service sleeps, so this
+    # instance is for demo data only: the blueprint must keep saying it, and free and paid must not be mixed by accident.
+    db = RENDER["databases"][0]
+    assert db["plan"] == API["plan"] == "free"
+    assert "DEMO DATA ONLY" in (ROOT / "render.yaml").read_text(encoding="utf-8")
 
 
 def test_the_service_builds_the_backend_image_and_has_a_health_check() -> None:
